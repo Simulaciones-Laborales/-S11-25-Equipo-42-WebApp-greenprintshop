@@ -1,9 +1,24 @@
 package com.ecommerce.model;
 
-import jakarta.persistence.*;
-import lombok.*;
-
+import java.sql.Timestamp;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "usuario")
@@ -23,6 +38,8 @@ public class Usuario {
     private String nombre;
 
     private String email;
+    
+    private String password;
 
     private String rol;
 
@@ -33,5 +50,17 @@ public class Usuario {
     @OneToMany(mappedBy = "cliente")
     @ToString.Exclude
     private List<Pedido> pedidos;
+
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private Timestamp createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
 }
 
