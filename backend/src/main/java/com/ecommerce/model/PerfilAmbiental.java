@@ -2,7 +2,6 @@ package com.ecommerce.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,22 +12,21 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(onlyExplicitlyIncluded = true)
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 public class PerfilAmbiental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Long idPerfil;
 
+    @Column(precision = 19, scale = 6)
     private BigDecimal huellaBaseCalculada;
 
     private LocalDateTime fechaUltimaCalculo;
 
     private Boolean validacionAdmin;
 
-    @OneToMany(mappedBy = "perfilAmbiental")
+    @OneToMany(mappedBy = "perfilAmbiental", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<MetricaAmbiental> metricas;
 }
