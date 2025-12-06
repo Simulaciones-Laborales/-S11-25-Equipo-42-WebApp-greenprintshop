@@ -1,4 +1,4 @@
-package com.ecommerce.model;
+package com.ecommerce.entity;
 
 public enum TipoMetrica {
     MATERIAL,     // materiales (kg, unidades)

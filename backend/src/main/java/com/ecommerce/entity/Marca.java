@@ -1,4 +1,4 @@
-package com.ecommerce.model;
+package com.ecommerce.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,32 +6,30 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "marca")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Usuario {
+public class Marca {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long idUsuario;
+    private Long idMarca;
 
     private String nombre;
 
-    private String email;
+    private Boolean certificadoVerde;
 
-    private String rol;
-
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "marca")
     @ToString.Exclude
-    private List<UsuarioMarca> marcasGestionadas;
+    private List<UsuarioMarca> usuarios;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "marca")
     @ToString.Exclude
-    private List<Pedido> pedidos;
+    private List<Producto> productos;
 }
 

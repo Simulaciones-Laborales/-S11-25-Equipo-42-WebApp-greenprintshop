@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos de fuente */
+body {
+  font-family: 'Inter', sans-serif;
+}
+/* Definicion de animacion para el componente Loader2 */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
